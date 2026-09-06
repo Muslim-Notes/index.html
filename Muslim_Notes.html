@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muslim Notes</title>
+  <style>
+
+  </style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riset Integratif - Manusia & Rahmatan lil 'Alamin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #e8e0d5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: #fdfaf6;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .page {
+            display: none;
+            padding: 50px 60px;
+            flex-direction: column;
+            flex: 1;
+            animation: fadeIn 0.3s ease;
+        }
+        .page.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            font-size: 28px;
+            color: #1a3c2e;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 3px double #b99a7b;
+            padding-bottom: 15px;
+        }
+        h2 {
+            font-size: 22px;
+            color: #1a3c2e;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-left: 5px solid #b99a7b;
+            padding-left: 15px;
+        }
+        h3 {
+            font-size: 18px;
+            color: #2d5a40;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        h4 {
+            font-size: 16px;
+            color: #3d6b4f;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-style: italic;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 12px;
+            color: #2c3e3e;
+        }
+        .arab {
+            font-size: 20px;
+            text-align: right;
+            direction: rtl;
+            font-family: 'Traditional Arabic', 'Amiri', serif;
+            color: #1a3c2e;
+            margin: 15px 0;
+            padding: 10px 15px;
+            background: #f4efe8;
+            border-radius: 8px;
+        }
+        .ayat {
+            font-style: italic;
+            color: #4a2e1b;
+            background: #f8f2ea;
+            padding: 8px 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 4px solid #b99a7b;
+        }
+        ul, ol {
+            margin: 10px 0 15px 25px;
+            color: #2c3e3e;
+            line-height: 1.8;
+        }
+        li {
+            margin-bottom: 6px;
+        }
+        .ref {
+            font-size: 14px;
+            color: #6b4f3a;
+            background: #f4efe8;
+            padding: 2px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 0 2px;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: #e8ddd0;
+            border-top: 2px solid #b99a7b;
+            margin-top: auto;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .nav button {
+            background: #1a3c2e;
+            color: #fdfaf6;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-family: 'Segoe UI', sans-serif;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: bold;
+        }
+        .nav button:hover {
+            background: #2d5a40;
+        }
+        .nav button:disabled {
+            background: #b0a090;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .page-indicator {
+            font-size: 16px;
+            color: #1a3c2e;
+            font-weight: bold;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .toc-btn {
+            background: transparent;
+            border: 2px solid #1a3c2e;
+            color: #1a3c2e;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .toc-btn:hover {
+            background: #1a3c2e;
+            color: #fdfaf6;
+        }
+        .toc-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+        .toc-overlay.active {
+            display: flex;
+        }
+        .toc-box {
+            background: #fdfaf6;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .toc-box h2 {
+            text-align: center;
+            border-bottom: 2px solid #b99a7b;
+            padding-bottom: 10px;
+        }
+        .toc-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        .toc-box li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e8ddd0;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+        .toc-box li:hover {
+            background: #f4efe8;
+            padding-left: 10px;
+        }
+        .close-toc {
+            background: #1a3c2e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+        }
+        @media (max-width: 600px) {
+            .page { padding: 25px 20px; }
+            h1 { font-size: 22px; }
+            h2 { font-size: 18px; }
+            p { font-size: 15px; }
+            .nav { padding: 10px 15px; flex-direction: column; }
+            .nav button { padding: 8px 20px; font-size: 14px; width: 100%; }
+            .arab { font-size: 18px; }
+        }
+        .separator {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #b99a7b, transparent);
+            margin: 25px 0;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: #1a3c2e;
+        }
+        .ref-list {
+            font-size: 14px;
+            line-height: 1.8;
+            margin-left: 20px;
+        }
+        .ref-list li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ==================== HALAMAN 1: COVER + ABSTRAK ==================== -->
+    <div class="page active" id="page1">
+        <div style="text-align: center; margin-top: 20px;">
+            <div style="font-size: 14px; color: #6b4f3a; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px;">Kajian Integratif</div>
+            <h1 style="font-size: 34px; border-bottom: none; padding-bottom: 0;">RISET INTEGRATIF:<br>MANUSIA YANG TIDAK SEMPURNA, MUHASABAH, DAN MISI RAHMATAN LIL 'ALAMIN</h1>
+            <p style="text-align: center; font-size: 20px; color: #2d5a40; margin-top: 10px;">Sebuah Kajian Teologis, Psikologis, dan Historis</p>
+            <hr class="separator">
+            <div style="font-size: 14px; color: #6b4f3a; margin-top: 10px;">Dipersembahkan untuk Umat</div>
+        </div>
+
+        <hr class="separator">
+
+        <h2>ABSTRAK</h2>
+        <p>Riset ini berangkat dari premis fundamental bahwa manusia diciptakan dalam keadaan lemah dan tidak sempurna. Dengan memadukan pendekatan teologi Islam, psikologi kognitif, neurosains, dan sejarah peradaban, riset ini menunjukkan bahwa perpecahan umat muncul ketika ketidaksempurnaan tidak dikelola melalui muhasabah, sehingga melahirkan fanatisme, bias kognitif, dan matinya hati. Sebaliknya, muhasabah yang didasari ilmu syar'i akan menumbuhkan kerendahan hati, kemampuan memisahkan penilaian perilaku dari penghakiman iman, penghormatan terhadap keragaman, dan semangat belajar dari era keemasan Islam. Tujuan akhirnya adalah aktualisasi tugas kekhalifahan sebagai wujud nyata misi Islam sebagai rahmat bagi seluruh alam. Kajian ini menggunakan metode studi pustaka dengan analisis tematik integratif dan diperkuat satu studi kasus netral tentang polarisasi media sosial. Temuan utama menunjukkan bahwa solusi perpecahan terletak pada kesadaran diri yang mendalam, bukan pada klaim kebenaran sepihak. Riset ini diharapkan menjadi pengingat yang menggerakkan, bukan sekadar peta konseptual yang menjelaskan.</p>
+
+        <h3>Kata Kunci:</h3>
+        <p>Ketidaksempurnaan manusia, muhasabah, perpecahan umat, rahmatan lil 'alamin, khalifah, desensitisasi moral, bias kognitif, polarisasi.</p>
+    </div>
+
+    <!-- ==================== HALAMAN 2: BAB 1 ==================== -->
+    <div class="page" id="page2">
+        <h1>BAB 1</h1>
+        <h2 style="border-left-color: #1a3c2e;">MANUSIA YANG TIDAK SEMPURNA — BAGAIMANA SEHARUSNYA KITA MEMAHAMI DIRI SENDIRI?</h2>
+
+        <h3>1.1 Latar Belakang: Mengapa Kita Harus Memulai dari Diri Sendiri?</h3>
+        <p>Pernahkah kita merasa yakin bahwa kitalah yang paling benar, sementara orang lain yang berbeda pendapat tampak keliru? Pernahkah kita merasa bahwa kelompok kitalah yang paling lurus, sementara kelompok lain mulai terasa seperti ancaman? Jika pernah, maka kita sedang berada di ambang perpecahan yang telah diperingatkan oleh Rasulullah shallallahu alaihi wasallam sejak empat belas abad yang lalu.</p>
+        <p>Perpecahan umat Islam adalah luka yang tak kunjung sembuh. Sejak wafatnya Rasulullah shallallahu alaihi wasallam, umat ini telah mengalami berbagai gelombang perselisihan, dari perbedaan politik hingga perbedaan teologis. Di era modern, media sosial mempercepat penyebaran hoaks dan ujaran kebencian, sekaligus memperkuat ruang gema yang mempertajam polarisasi. Berbagai laporan lembaga riset perdamaian menunjukkan bahwa konflik berbasis identitas agama masih menjadi penyumbang signifikan ketidakstabilan di sejumlah kawasan. Di Indonesia, riset tentang toleransi dan kerukunan menunjukkan fluktuasi yang mengkhawatirkan dalam beberapa tahun terakhir, terutama di ruang digital.</p>
+        <p>Ironisnya, umat Islam memiliki kitab suci yang sama, nabi yang sama, dan kiblat yang sama. Lalu, mengapa kita tetap terpecah? Riset ini lahir dari keprihatinan itu, tetapi juga dari harapan. Harapan bahwa perpecahan bukanlah takdir, melainkan luka yang bisa diobati. Dan obatnya, sebagaimana akan kita lihat, dimulai dari satu langkah kecil: berhenti sejenak dan bertanya pada diri sendiri, sudahkah kita jujur tentang kelemahan kita sendiri?</p>
+        <p>Setelah menyusuri berbagai disiplin ilmu, semua muara akhirnya mengarah pada satu jawaban yang justru sangat manusiawi: karena manusia memang diciptakan tidak sempurna. Pengakuan akan ketidaksempurnaan ini bukanlah pesimisme, bukan pula pembenaran atas kesalahan. Justru sebaliknya, pemahaman yang jujur tentang kelemahan diri adalah kunci untuk membuka pintu muhasabah, landasan untuk saling mengingatkan dengan kasih sayang, dan fondasi bagi persatuan sejati.</p>
+
+        <h3>1.2 Fondasi Teologis: Manusia Diciptakan Lemah dan Tidak Sempurna</h3>
+        <p>Sebelum membicarakan perpecahan, kita perlu berhenti sejenak dan melihat cermin. Siapakah kita sebenarnya? Al-Qur'an dan Hadis dengan tegas menyatakan bahwa ketidaksempurnaan adalah bagian dari fitrah manusia. Allah SWT berfirman:</p>
+        <div class="ayat">"Allah hendak memberikan keringanan kepadamu, karena manusia diciptakan dalam keadaan lemah." (QS. An-Nisa [4]: 28)</div>
+        <p>Ayat ini bukanlah celaan, melainkan penjelasan tentang realitas. Kelemahan ini melekat pada diri manusia karena ia diciptakan dari tanah yang lemah, dari air yang hina, lalu dibentuk menjadi makhluk yang memiliki keterbatasan dalam segala hal.</p>
+        <p>Rasulullah shallallahu alaihi wasallam menegaskan hal ini dalam beberapa hadis. Beliau bersabda:</p>
+        <div class="ayat">"Setiap anak Adam sering berbuat salah, dan sebaik-baik orang yang berbuat salah adalah yang bertobat." (HR. Tirmidzi no. 2499; Ibnu Majah no. 4251)</div>
+        <p>Ini bukan tentang orang lain. Ini tentang kita. Tentang saya yang menulis, dan Anda yang membaca. Kita semua adalah tempatnya salah. Dalam hadis lain, beliau mengakui:</p>
+        <div class="ayat">"Aku hanyalah manusia biasa seperti kalian, terkadang lupa sebagaimana kalian lupa." (HR. Bukhari no. 401; Muslim no. 570)</div>
+        <p>Pengakuan Nabi shallallahu alaihi wasallam yang juga manusia menunjukkan bahwa kesempurnaan mutlak hanya milik Allah. Implikasi teologis dari pengakuan ini adalah tumbuhnya kerendahan hati, terbukanya pintu taubat, dan dorongan untuk saling memaafkan. Karena semua orang pernah salah, memaafkan adalah keniscayaan, bukan sekadar keutamaan. Dan justru di situlah letak keadilan Allah: Dia tidak menuntut kita sempurna, tetapi Dia menuntut kita untuk kembali setiap kali kita tergelincir.</p>
+
+        <h3>1.3 Tujuan dan Ruang Lingkup Riset</h3>
+        <p>Riset ini bertujuan menyusun peta jalan yang komprehensif dari permasalahan perpecahan menuju solusi, dengan menekankan keterkaitan antara kesadaran akan ketidaksempurnaan diri dan kemampuan membangun persatuan. Peta jalan ini diharapkan menjadi panduan praktis bagi individu, komunitas muslim, dan pengambil kebijakan dalam merespons perbedaan dan konflik.</p>
+        <p>Riset ini merumuskan lima pertanyaan utama:</p>
+        <ol>
+            <li>Bagaimana Al-Qur'an dan Hadis menjelaskan ketidaksempurnaan manusia?</li>
+            <li>Bagaimana psikologi modern dan neurosains mengonfirmasi dan memperkaya penjelasan teologis tersebut?</li>
+            <li>Apa saja akar perpecahan umat, baik pada level individu, kelompok, maupun struktur sosial?</li>
+            <li>Bagaimana muhasabah, larangan menghakimi, penghormatan terhadap keragaman, dan pembelajaran dari era keemasan Islam dapat menjadi solusi?</li>
+            <li>Bagaimana tugas kekhalifahan dan misi rahmatan lil 'alamin menjadi tujuan akhir dari persatuan?</li>
+        </ol>
+
+        <h3>1.4 Metodologi Riset</h3>
+        <p>Riset ini menggunakan pendekatan kualitatif dengan metode studi pustaka dan analisis tematik integratif. Sumber primer meliputi Al-Qur'an dan hadis-hadis dari kitab induk: Shahih Bukhari, Shahih Muslim, Sunan Abu Daud, Sunan Tirmidzi, dan Sunan Ibnu Majah. Karya ulama klasik seperti Ihya Ulumuddin dan Faishal al-Tafriqah karya Al-Ghazali, Muqaddimah karya Ibnu Khaldun, serta Al-Fasl fi al-Milal karya Ibnu Hazm juga menjadi rujukan penting. Sumber sekunder meliputi literatur psikologi kognitif, neurosains, sosiologi, dan sejarah yang mutakhir.</p>
+        <p>Prosedur analisis data dilakukan melalui: (1) identifikasi dan pengumpulan sumber yang relevan; (2) pemilahan tematik berdasarkan tema besar; (3) analisis integratif dengan mempertemukan perspektif teologis dan ilmiah; (4) validasi silang antar sumber; dan (5) penyusunan sintesis menjadi narasi utuh. Proses koding tematik dilakukan secara manual dengan pola induktif-deduktif. Untuk mengelola subjektivitas, peneliti melakukan triangulasi sumber: setiap klaim teologis diuji silang dengan setidaknya dua referensi independen, dan setiap klaim ilmiah diuji dengan literatur peer-reviewed.</p>
+
+        <h3>1.5 Keterbatasan Riset</h3>
+        <p>Riset ini memiliki beberapa keterbatasan yang perlu diakui secara eksplisit:</p>
+        <ol>
+            <li>Sebagai studi pustaka, riset ini tidak menggunakan data lapangan, sehingga validitas eksternalnya terbatas.</li>
+            <li>Pemilihan dan interpretasi sumber tidak dapat sepenuhnya bebas dari subjektivitas peneliti, meskipun telah dilakukan triangulasi.</li>
+            <li>Temuan-temuan dalam riset ini bersifat konseptual dan memerlukan pengujian lebih lanjut melalui riset empiris.</li>
+            <li>Riset ini tidak membahas secara mendalam dimensi politik dan ekonomi dari perpecahan umat.</li>
+        </ol>
+    </div>
+
+    <!-- ==================== HALAMAN 3: BAB 2 ==================== -->
+    <div class="page" id="page3">
+        <h1>BAB 2</h1>
+        <h2 style="border-left-color: #1a3c2e;">BAGAIMANA MANUSIA SALAH BERPIKIR? — KONFIRMASI ILMIAH ATAS KETERBATASAN MANUSIA</h2>
+
+        <h3>2.1 Pengantar: Mengapa Kita Sering Keliru Menilai?</h3>
+        <p>Jika manusia diciptakan tidak sempurna, lalu bagaimana ketidaksempurnaan itu bekerja dalam praktiknya? Mengapa kita sering kali begitu yakin dengan pendapat kita sendiri, bahkan ketika bukti menunjukkan sebaliknya? Mengapa kita sulit menerima kritik, dan lebih mudah percaya pada kabar buruk tentang orang yang berbeda dengan kita?</p>
+        <p>Ilmu pengetahuan modern—khususnya psikologi kognitif dan neurosains—memberikan jawaban yang menarik. Ternyata, ketidaksempurnaan manusia bukan hanya masalah moral atau spiritual; ia juga tertanam dalam cara otak kita bekerja. Dan yang lebih penting: kesadaran akan cara kerja otak ini adalah langkah awal untuk tidak terjebak olehnya.</p>
+
+        <h3>2.2 Bagaimana Otak Kita Bekerja: Sistem 1 dan Sistem 2</h3>
+        <p>Psikologi kognitif menunjukkan bahwa otak manusia memiliki kapasitas terbatas sehingga menggunakan heuristik, yaitu jalan pintas mental yang efisien tetapi rawan bias. Daniel Kahneman, peraih Nobel Ekonomi, dalam bukunya Thinking, Fast and Slow menjelaskan bahwa otak bekerja dengan dua sistem:</p>
+        <ul>
+            <li><strong>Sistem 1</strong> bekerja cepat, intuitif, dan emosional. Ia adalah "mesin" otak yang mengambil keputusan secara otomatis tanpa kita sadari. Contoh: ketika kita melihat wajah marah, kita langsung tahu; ketika kita mendengar suara keras, kita terkejut.</li>
+            <li><strong>Sistem 2</strong> bekerja lambat, logis, dan membutuhkan usaha. Ia adalah "mesin" yang kita gunakan untuk perhitungan matematika, perencanaan, atau analisis mendalam. Namun, Sistem 2 malas dan sering kali hanya mengikuti jejak Sistem 1.</li>
+        </ul>
+        <p>Masalahnya, Sistem 1 sering kali mendominasi, bahkan dalam keputusan-keputusan penting. Kita membuat penilaian cepat berdasarkan emosi dan intuisi, lalu Sistem 2 datang belakangan hanya untuk mencari pembenaran. Ini adalah akar dari banyak bias kognitif yang memicu perpecahan.</p>
+
+        <h3>2.3 Bias Kognitif yang Memicu Perpecahan</h3>
+        <p>Beberapa bias kognitif yang paling relevan dengan perpecahan umat adalah:</p>
+
+        <h4>a. Bias Konfirmasi</h4>
+        <p>Kecenderungan untuk mencari, menafsirkan, dan mengingat informasi yang menguatkan keyakinan yang sudah ada, serta mengabaikan informasi yang bertentangan. Contoh: Ketika kita sudah yakin bahwa kelompok tertentu sesat, kita akan dengan mudah percaya pada setiap berita buruk tentang mereka, tetapi meragukan berita baik. Algoritma media sosial memperkuat ini dengan menampilkan konten yang sesuai dengan preferensi kita.</p>
+
+        <h4>b. Bias Terlalu Percaya Diri</h4>
+        <p>Kecenderungan untuk melebih-lebihkan kemampuan penilaian diri sendiri. Contoh: Kita yakin bahwa penafsiran kita terhadap ayat atau hadis adalah yang paling benar, dan orang yang berbeda pendapat pasti salah. Padahal, sejarah menunjukkan bahwa para sahabat pun berbeda pendapat dalam banyak hal.</p>
+
+        <h4>c. Titik Buta Bias</h4>
+        <p>Kecenderungan untuk melihat bias pada orang lain tetapi tidak pada diri sendiri. Contoh: Kita dengan mudah melihat fanatisme kelompok lain, tetapi sulit melihat fanatisme kita sendiri. Kita mengkritik orang lain yang membela kelompoknya buta-buta, tetapi kita melakukan hal yang sama.</p>
+
+        <h4>d. Efek Dunning-Kruger</h4>
+        <p>Fenomena di mana orang dengan kompetensi rendah dalam suatu bidang cenderung melebih-lebihkan kemampuannya, sementara orang dengan kompetensi tinggi cenderung meragukan dirinya. Penting untuk dicatat: ini bukan berarti orang bodoh selalu percaya diri dalam segala hal. Efek ini spesifik pada bidang di mana kompetensinya rendah. Seseorang bisa sangat percaya diri dalam penafsiran agama karena ia tidak menyadari betapa kompleksnya ilmu tafsir, ushul fiqh, dan sejarah.</p>
+        <p>Rasulullah shallallahu alaihi wasallam telah memperingatkan hal ini sejak 14 abad lalu:</p>
+        <div class="ayat">"Sesungguhnya Allah tidak mencabut ilmu dengan mencabutnya dari hamba-hamba, tetapi Dia mencabut ilmu dengan mewafatkan para ulama, hingga ketika tidak ada lagi ulama, manusia mengangkat pemimpin-pemimpin yang bodoh. Mereka ditanya lalu berfatwa tanpa ilmu, maka mereka sesat dan menyesatkan." (HR. Bukhari no. 100; Muslim no. 2673)</div>
+
+        <h4>e. Bias Ingrup-Outgroup</h4>
+        <p>Kecenderungan untuk menilai kelompok sendiri lebih baik dan kelompok lain lebih buruk. Contoh: Kita menganggap kelompok kita (mazhab, organisasi, atau partai) adalah yang paling benar, sementara kelompok lain—meskipun mengaku Islam—dianggap sesat atau minimal menyimpang.</p>
+
+        <h3>2.4 Neurosains: Emosi Mendahului Nalar</h3>
+        <p>Neurosains memperkuat temuan ini dengan menjelaskan mengapa Sistem 1 sering mendominasi. Riset-riset terbaru menunjukkan bahwa:</p>
+        <ul>
+            <li>Amigdala, pusat emosi di otak, bereaksi lebih cepat daripada korteks prefrontal yang bertanggung jawab atas nalar.</li>
+            <li>Ketika seseorang tersinggung oleh ujaran kelompok lain, reaksi emosional (marah, defensif) muncul dalam milidetik.</li>
+            <li>Nalar baru menyusul kemudian—sering kali hanya untuk mencari pembenaran atas reaksi emosional yang sudah terjadi.</li>
+        </ul>
+        <p>Inilah mengapa debat di media sosial sering berubah menjadi pertengkaran emosional, bukan diskusi rasional.</p>
+
+        <h3>2.5 Disonansi Kognitif: Mencari Pembenaran</h3>
+        <p>Leon Festinger mengemukakan teori disonansi kognitif: ketika seseorang melakukan tindakan yang bertentangan dengan nilai yang diyakininya, ia mengalami ketidaknyamanan psikologis. Untuk mengurangi ketidaknyamanan itu, otak mencari pembenaran. Contoh dalam konteks perpecahan:</p>
+        <ul>
+            <li>Seseorang yang memusuhi saudara muslimnya (bertentangan dengan nilai ukhuwah) akan merasa tidak nyaman.</li>
+            <li>Untuk mengurangi ketidaknyamanan itu, ia mencari pembenaran: "Mereka memang pantas dimusuhi karena mereka sesat," atau "Aku bukan memusuhi, aku hanya membela kebenaran."</li>
+            <li>Pembenaran ini membuatnya merasa benar dan nyaman kembali, tetapi memperdalam perpecahan.</li>
+        </ul>
+
+        <h3>2.6 Perspektif Psikologi Islam: Tazkiyah dan Pengendalian Diri</h3>
+        <p>Selain teori-teori psikologi Barat yang telah disebutkan, tradisi Islam memiliki kerangka psikologis yang kaya dan mendalam. Imam Al-Ghazali dalam Ihya Ulumuddin mengembangkan model jiwa manusia yang terdiri dari tiga komponen: nafs ammarah (jiwa yang cenderung pada kejahatan), nafs lawwamah (jiwa yang menyalahkan diri), dan nafs muthmainnah (jiwa yang tenang). Proses penyucian jiwa (tazkiyah) adalah perjalanan dari nafs ammarah menuju nafs muthmainnah melalui mujahadah (perjuangan melawan hawa nafsu) dan muraqabah (kesadaran akan pengawasan Allah).</p>
+        <p>Konsep ini sangat relevan dengan perpecahan umat. Seseorang yang dikuasai nafs ammarah akan cenderung membela egonya, mempertahankan pendapatnya, dan memusuhi orang yang berbeda—bahkan ketika ia tahu itu salah. Sebaliknya, nafs lawwamah adalah hati nurani yang terus mengingatkan ketika kita tergelincir. Dan nafs muthmainnah adalah kondisi di mana seseorang telah mencapai ketenangan batin sehingga tidak mudah terprovokasi oleh perbedaan.</p>
+        <p>Al-Ghazali juga membahas secara panjang lebar tentang penyakit hati (amradh al-qulub) seperti sombong, riya, hasad, dan ghaflah (kelalaian). Ia menekankan bahwa pengobatan penyakit-penyakit ini dimulai dari pengenalan diri (ma'rifah al-nafs)—yang sejalan dengan muhasabah. Tanpa pengenalan diri, seseorang tidak akan pernah menyadari penyakit hatinya, dan tanpa kesadaran itu, ia tidak akan pernah sembuh.</p>
+        <p>Ibnu Qayyim al-Jawziyyah, murid Ibnu Taimiyah, juga mengembangkan psikologi spiritual yang mendalam. Dalam Madarij al-Salikin, ia menjelaskan bahwa perjalanan spiritual manusia dimulai dari kesadaran akan kelemahan diri, yang kemudian melahirkan ketergantungan kepada Allah, yang pada akhirnya menghasilkan kerendahan hati dan kasih sayang kepada sesama. Ini sangat sejalan dengan tesis utama riset ini: kesadaran akan ketidaksempurnaan adalah pintu masuk menuju perbaikan diri dan persatuan.</p>
+        <p>Perbedaan utama antara psikologi Islam dan psikologi Barat dalam konteks ini adalah:</p>
+        <ul>
+            <li>Psikologi Barat cenderung melihat bias dan kesalahan sebagai "bug" dalam sistem kognitif yang perlu diperbaiki secara teknis.</li>
+            <li>Psikologi Islam melihatnya sebagai bagian dari ujian spiritual yang membutuhkan pengenalan diri, pertobatan, dan pengembalian diri kepada Allah.</li>
+        </ul>
+        <p>Keduanya saling melengkapi. Psikologi Barat membantu kita memahami mekanisme kesalahan, sedangkan psikologi Islam membantu kita memahami makna dan tujuan dari perbaikan diri.</p>
+
+        <h3>2.7 Kritik dan Keterbatasan Teori Psikologi</h3>
+        <p>Perlu dicatat bahwa teori-teori psikologi yang dikutip bukanlah kebenaran mutlak. Beberapa kritik yang perlu diperhatikan:</p>
+        <ol>
+            <li>Teori disonansi kognitif dikritik karena terlalu menekankan konsistensi internal dan kurang memperhatikan faktor sosial. Teori identitas sosial dari Tajfel dan Turner menunjukkan bahwa identitas kelompok sering kali menjadi pendorong utama konflik, bukan sekadar disonansi individu.</li>
+            <li>Psikologi positif dari Seligman dan Peterson menawarkan pendekatan yang lebih konstruktif: alih-alih hanya mengidentifikasi bias, kita juga perlu mengembangkan kekuatan karakter seperti kerendahan hati, empati, dan kebijaksanaan.</li>
+            <li>Budaya dan konteks sangat mempengaruhi bagaimana bias bekerja. Tidak semua masyarakat merespons perbedaan dengan cara yang sama.</li>
+        </ol>
+        <p>Namun, terlepas dari kritik ini, temuan dasar tentang keterbatasan kognitif manusia tetap valid dan relevan. Jika bias-bias ini ada dalam diri kita, maka perpecahan bukanlah sesuatu yang terjadi "di luar sana." Ia dimulai dari sini, dari cara kita berpikir.</p>
+    </div>
+
+    <!-- ==================== HALAMAN 4: BAB 3 ==================== -->
+    <div class="page" id="page4">
+        <h1>BAB 3</h1>
+        <h2 style="border-left-color: #1a3c2e;">BAGAIMANA KESALAHAN INDIVIDUAL MENJADI FANATISME? — AKAR MASALAH PERPECAHAN</h2>
+
+        <h3>3.1 Dari Kesalahan Pribadi ke Fanatisme Kelompok</h3>
+        <p>Setelah memahami bahwa manusia memiliki kecenderungan alami untuk salah dan bias, pertanyaan selanjutnya adalah: bagaimana kesalahan individual ini berubah menjadi fanatisme kelompok yang berbahaya?</p>
+        <p>Prosesnya bertahap. Seseorang yang tidak menyadari biasanya akan:</p>
+        <ol>
+            <li>Menganggap pendapatnya sebagai kebenaran mutlak, karena ia tidak menyadari keterbatasan pengetahuan.</li>
+            <li>Menganggap orang yang berbeda pendapat sebagai lawan, karena ia tidak bisa membayangkan bagaimana orang lain bisa melihat hal yang sama secara berbeda.</li>
+            <li>Mencari teman sebaya yang sependapat, membentuk kelompok yang saling menguatkan keyakinan.</li>
+            <li>Menganggap kelompok lain sebagai ancaman, karena perbedaan dianggap sebagai tantangan terhadap kebenaran yang diyakininya.</li>
+        </ol>
+        <p>Di sinilah fanatisme lahir.</p>
+
+        <h3>3.2 Fanatisme Buta (Ashabiyah)</h3>
+        <p>Ibnu Khaldun dalam Muqaddimah mengidentifikasi ashabiyah sebagai solidaritas kelompok yang berlebihan hingga membutakan mata hati. Ashabiyah membuat seseorang membela kelompoknya mati-matian meskipun salah, dan memusuhi yang lain meskipun benar.</p>
+        <p>Rasulullah shallallahu alaihi wasallam bersabda:</p>
+        <div class="ayat">"Bukan termasuk golongan kami orang yang menyeru kepada ashabiyah, berperang karena ashabiyah, atau mati karena ashabiyah." (HR. Abu Daud no. 5119)</div>
+        <p>Perlu dibedakan antara fanatisme buta dan komitmen teguh terhadap kebenaran (ittiba):</p>
+        <ul>
+            <li>Mencintai kebenaran dengan dalil adalah kewajiban.</li>
+            <li>Membela kelompok tanpa dalil adalah kesesatan.</li>
+        </ul>
+
+        <h3>3.3 Penyakit Hati: Sombong, Iri, dan Buruk Sangka</h3>
+        <p>Penyakit hati seperti sombong, iri, dengki, dan buruk sangka berperan besar dalam memperkuat fanatisme. Al-Qur'an memperingatkan:</p>
+        <div class="ayat">"Wahai orang-orang yang beriman! Jauhilah banyak prasangka, karena sebagian prasangka itu dosa." (QS. Al-Hujurat [49]: 12)</div>
+        <p>Sombong adalah penyakit hati yang paling berbahaya. Iblis diusir dari surga bukan karena tidak beribadah, tetapi karena sombong. Ia menganggap dirinya lebih baik dari Adam. Pola yang sama terjadi dalam perpecahan umat: seseorang menganggap dirinya dan kelompoknya lebih baik, sehingga merendahkan orang lain.</p>
+
+        <h3>3.4 Ketidaktahuan dan Efek Dunning-Kruger</h3>
+        <p>Ketidaktahuan terhadap ajaran Islam yang benar adalah lahan subur bagi perpecahan. Sebagaimana disebutkan sebelumnya, efek Dunning-Kruger menunjukkan bahwa orang yang paling tidak berilmu justru paling percaya diri dan paling berani memvonis sesat.</p>
+        <p>Ini diperparah oleh fenomena "seorang muslim merasa cukup" — seseorang belajar Islam seadanya, lalu merasa sudah menguasai segalanya. Padahal, tradisi keilmuan Islam mengajarkan bahwa menuntut ilmu adalah kewajiban seumur hidup. Imam Syafi'i berkata:</p>
+        <div class="ayat">"Setiap kali aku belajar, aku semakin menyadari betapa sedikitnya pengetahuan."</div>
+
+        <h3>3.5 Faktor Struktural: Media Sosial dan Polarisasi</h3>
+        <p>Perpecahan tidak hanya masalah individu, tetapi juga didorong oleh faktor struktural. Media sosial, dengan algoritma yang dirancang untuk memaksimalkan keterlibatan (engagement), cenderung menampilkan konten yang emosional dan kontroversial. Ini menciptakan:</p>
+        <ul>
+            <li><strong>Ruang gema (echo chamber):</strong> pengguna hanya terpapar informasi yang sejalan dengan keyakinannya.</li>
+            <li><strong>Gelembung filter (filter bubble):</strong> pengguna tidak menyadari bahwa ia hanya melihat sebagian kecil dari realitas.</li>
+        </ul>
+        <p>Hal ini memperkuat bias konfirmasi dan memperdalam polarisasi. Perpecahan bukan sekadar masalah akhlak individu, tetapi juga tantangan struktural yang menuntut tanggung jawab kolektif.</p>
+
+        <h3>3.6 Hadis Perpecahan: Antara Peringatan dan Pemahaman</h3>
+        <p>Rasulullah shallallahu alaihi wasallam bersabda:</p>
+        <div class="ayat">"Orang-orang Yahudi bergolong-golong terpecah menjadi tujuh puluh satu atau tujuh puluh dua golongan, orang Nasrani bergolong-golong menjadi tujuh puluh satu atau tujuh puluh dua golongan, dan umatku akan bergolong-golong menjadi tujuh puluh tiga golongan." (HR. Abu Daud no. 4596; Tirmidzi no. 2640)</div>
+        <p>Dalam riwayat lain disebutkan:</p>
+        <div class="ayat">"Semuanya di neraka kecuali satu golongan." Para sahabat bertanya, "Siapa dia, wahai Rasulullah?" Beliau menjawab, "Al-Jama'ah." (HR. Abu Daud no. 4597; Ibnu Majah no. 3992)</div>
+        <p>Riwayat lain menyebut:</p>
+        <div class="ayat">"Yaitu yang mengikuti aku dan para sahabatku." (HR. Tirmidzi no. 2641)</div>
+        <p>Para ulama Ahlussunnah seperti Abu Manshur Al-Baghdadi, Asy-Syahrastani, dan Ibnu Taimiyah sepakat bahwa golongan yang selamat adalah Ahlussunnah wal Jama'ah. Namun, perlu dicatat bahwa di kalangan ulama sendiri terdapat perbedaan penafsiran tentang cakupan "Al-Jama'ah" ini. Sebagian menekankan aspek akidah, sebagian lain menekankan aspek metodologi pemahaman, dan sebagian lagi menekankan aspek persatuan sosial.</p>
+        <p>Imam Al-Ghazali dalam Faishal al-Tafriqah menekankan bahwa perbedaan dalam masalah ushuluddin (pokok agama) memang serius, tetapi perbedaan dalam furu' (cabang) tidak menjadikan pelakunya kafir.</p>
+        <p>Kesimpulan dari hadis ini: daripada sibuk mencari siapa yang selamat, lebih baik kita sibuk memperbaiki diri sendiri agar layak disebut hamba-Nya. Karena hanya Allah yang tahu siapa yang selamat di akhirat. Dan justru karena manusia tidak sempurna, kita tidak boleh merasa pasti bahwa kelompok kita adalah golongan yang selamat dengan mengabaikan kemungkinan kesalahan diri sendiri.</p>
+
+        <h3>3.7 Perbedaan dalam Furu' adalah Keniscayaan</h3>
+        <p>Perbedaan dalam masalah cabang fiqih adalah hal yang niscaya. Imam Syafi'i berkata:</p>
+        <div class="ayat">"Pendapatku benar tetapi mungkin saja salah, pendapat orang lain salah tetapi mungkin saja benar."</div>
+        <p>Perbedaan ini seharusnya dikelola dengan adab al-ikhtilaf (etika perbedaan), bukan menjadi pemicu konflik.</p>
+    </div>
+
+    <!-- ==================== HALAMAN 5: BAB 4 ==================== -->
+    <div class="page" id="page5">
+        <h1>BAB 4</h1>
+        <h2 style="border-left-color: #1a3c2e;">DESENSITISASI MORAL — HATI YANG MATI RASA</h2>
+
+        <h3>4.1 Pengertian Desensitisasi Moral dalam Islam</h3>
+        <p>Perpecahan bukan hanya masalah sosial, tetapi juga masalah internal hati. Prosesnya bertahap. Awalnya hati masih peka dan merasa tidak nyaman saat berselisih. Kemudian biasa. Lalu perpecahan terjadi.</p>
+        <p>Al-Qur'an menggambarkan:</p>
+        <div class="ayat">"Kemudian hati mereka menjadi keras seperti batu, bahkan lebih keras lagi." (QS. Al-Baqarah [2]: 74)</div>
+        <p>Secara psikologis, konsep ini sejalan dengan apa yang oleh Albert Bandura disebut sebagai moral disengagement atau desensitisasi moral. Bandura menjelaskan bahwa manusia memiliki mekanisme untuk melepaskan diri dari standar moralnya sendiri, sehingga ia dapat melakukan tindakan yang melanggar nilai tanpa merasa bersalah. Mekanisme ini meliputi: pembenaran moral, pelabelan eufemistis, perbandingan yang menguntungkan, pengalihan tanggung jawab, penyebaran tanggung jawab, pengabaian konsekuensi, dehumanisasi korban, dan penyalahan korban.</p>
+        <p>Dalam tradisi Islam, fenomena ini dikenal dengan istilah qaswah al-qalb (kekerasan hati) atau ghaflah (kelalaian). Al-Ghazali dalam Ihya Ulumuddin secara panjang lebar membahas bagaimana dosa-dosa kecil yang tidak segera ditobati dapat mengeras menjadi noda hitam di hati, sebagaimana sabda Nabi shallallahu alaihi wasallam:</p>
+        <div class="ayat">"Sesungguhnya jika seorang hamba berbuat dosa, maka timbullah satu titik hitam di hatinya. Jika ia bertaubat, titik itu dihapus. Jika ia terus berbuat dosa, titik itu terus bertambah hingga menutupi seluruh hatinya." (HR. Tirmidzi no. 3334; Ibnu Majah no. 4244)</div>
+
+        <h3>4.2 Tahapan Hati Menjadi Keras</h3>
+        <p>Proses desensitisasi moral dalam konteks perpecahan umat dapat dibagi menjadi beberapa tahap:</p>
+
+        <h4>Tahap 1: Ketidaknyamanan Awal</h4>
+        <p>Pada tahap ini, hati masih peka. Ketika melihat atau melakukan tindakan yang melanggar nilai persaudaraan—misalnya menghina saudara muslim atau menyebarkan fitnah—seseorang masih merasakan ketidaknyamanan. Nurani masih berfungsi. Ini adalah fase di mana muhasabah paling efektif.</p>
+
+        <h4>Tahap 2: Pembenaran Diri</h4>
+        <p>Ketika ketidaknyamanan muncul, otak mencari pembenaran. Ini adalah mekanisme disonansi kognitif yang dijelaskan Festinger. Seseorang mulai berkata: "Tapi dia memang pantas dihina," atau "Ini bukan fitnah, ini fakta," atau "Yang lain juga melakukan hal yang sama." Pembenaran ini membuat pelaku merasa lebih nyaman dengan tindakannya.</p>
+
+        <h4>Tahap 3: Pembiasaan</h4>
+        <p>Jika pembenaran terus diulang dan tidak ada muhasabah yang tulus, perasaan tidak nyaman mulai memudar. Apa yang dulu terasa salah kini terasa biasa. Hinaan, ujaran kebencian, dan fitnah dianggap sebagai bagian normal dari perbedaan pendapat. Hati mulai kehilangan kepekaannya.</p>
+
+        <h4>Tahap 4: Normalisasi</h4>
+        <p>Pada tahap ini, tindakan yang tadinya melanggar nilai menjadi norma baru. Kelompok yang paling keras justru dianggap paling berani membela kebenaran. Yang lembut dianggap kompromis. Hati yang mati rasa tidak lagi membedakan antara kebenaran dan kebatilan, antara nasihat dan hinaan.</p>
+
+        <h4>Tahap 5: Hati yang Mati</h4>
+        <p>Ini adalah kondisi yang digambarkan Al-Qur'an sebagai hati yang keras seperti batu, bahkan lebih keras. Tidak ada lagi getaran ketika mendengar ayat-ayat Allah tentang persaudaraan. Tidak ada lagi rasa bersalah ketika menyakiti saudara seiman. Tidak ada lagi keinginan untuk rujuk dan damai.</p>
+
+        <h3>4.3 Tanda-tanda Hati Mati Rasa</h3>
+        <p>Beberapa tanda yang menunjukkan bahwa seseorang telah mengalami desensitisasi moral dalam konteks perpecahan umat:</p>
+        <ul>
+            <li>Merasa tenang ketika melihat saudaranya dihina atau difitnah, bahkan ikut menyebarkannya.</li>
+            <li>Merasa bangga dengan kekerasan kata-kata, menganggapnya sebagai bentuk ketegasan.</li>
+            <li>Tidak peduli dengan dampak ucapannya terhadap perasaan orang lain atau persatuan umat.</li>
+            <li>Menganggap semua yang berbeda pendapat sebagai musuh yang harus dilawan.</li>
+            <li>Merasa benar secara mutlak dan tidak mau lagi mendengar kritik atau nasihat.</li>
+        </ul>
+
+        <h3>4.4 Dampak pada Perpecahan Umat</h3>
+        <p>Ketika desensitisasi moral terjadi pada skala komunitas, dampaknya sangat destruktif:</p>
+        <ol>
+            <li><strong>Legitimasi kekerasan:</strong> Hinaan verbal menjadi pintu masuk menuju kekerasan fisik. Apa yang semula hanya perdebatan di media sosial dapat berubah menjadi konflik di dunia nyata.</li>
+            <li><strong>Penghancuran ukhuwah:</strong> Ikatan persaudaraan Islam yang seharusnya menjadi kekuatan justru hancur karena hati-hati telah mati rasa terhadap penderitaan saudaranya sendiri.</li>
+            <li><strong>Polarisasi yang dalam:</strong> Kelompok-kelompok yang saling bermusuhan semakin menjauh karena tidak ada lagi keinginan untuk saling memahami. Masing-masing merasa puas dengan kebenaran sepihaknya.</li>
+            <li><strong>Hilangnya rahmat:</strong> Ketika hati mati, rahmat hilang. Umat yang seharusnya menjadi rahmat bagi alam justru menjadi sumber petaka bagi dirinya sendiri dan orang lain.</li>
+        </ol>
+
+        <h3>4.5 Kembalinya Kepekaan Hati</h3>
+        <p>Namun, hati yang mati bukanlah kondisi tanpa harapan. Al-Qur'an mengajarkan bahwa pintu taubat selalu terbuka. Proses kembalinya kepekaan hati dimulai dari:</p>
+        <ol>
+            <li><strong>Muhasabah yang jujur:</strong> Berani bertanya pada diri sendiri: "Apakah hatiku masih sakit ketika melihat saudaraku disakiti? Ataukah aku sudah mulai biasa?"</li>
+            <li><strong>Mengingat kematian dan akhirat:</strong> Kesadaran bahwa setiap ucapan dan perbuatan akan dihisab dapat mengembalikan kepekaan hati.</li>
+            <li><strong>Bergaul dengan orang-orang saleh:</strong> Lingkungan yang baik membantu hati tetap peka terhadap kebenaran.</li>
+            <li><strong>Memperbanyak istighfar:</strong> Taubat dan istighfar membersihkan noda-noda hitam yang menutupi hati.</li>
+        </ol>
+        <p>Sebagaimana sabda Nabi shallallahu alaihi wasallam:</p>
+        <div class="ayat">"Sesungguhnya hati itu berkarat sebagaimana besi berkarat. Cara menjernihkannya adalah dengan banyak mengingat kematian dan membaca Al-Qur'an." (HR. Al-Baihaqi dalam Syu'ab al-Iman)</div>
+    </div>
+
+    <!-- ==================== HALAMAN 6: BAB 5 ==================== -->
+    <div class="page" id="page6">
+        <h1>BAB 5</h1>
+        <h2 style="border-left-color: #1a3c2e;">MUHASABAH — INTROSPEKSI DIRI</h2>
+
+        <h3>5.1 Pengertian Muhasabah</h3>
+        <p>Muhasabah adalah introspeksi diri, yaitu proses mengevaluasi setiap tindakan dan niat. Allah SWT berfirman:</p>
+        <div class="ayat">"Wahai orang-orang yang beriman! Bertakwalah kepada Allah dan hendaklah setiap diri memperhatikan apa yang telah diperbuatnya untuk hari esok (akhirat)." (QS. Al-Hasyr [59]: 18)</div>
+        <p>Rasulullah shallallahu alaihi wasallam bersabda:</p>
+        <div class="ayat">"Orang yang cerdas adalah orang yang menghisab dirinya dan beramal untuk kehidupan setelah kematian." (HR. Tirmidzi no. 2459)</div>
+        <p>Muhasabah bukan sekadar ritual menghitung dosa di akhir malam. Ia adalah keberanian untuk bertanya dengan jujur:</p>
+        <ul>
+            <li>Mengapa aku begitu mudah tersinggung ketika kelompokku dikritik?</li>
+            <li>Mengapa aku begitu cepat percaya pada kabar buruk tentang orang yang berbeda pendapat denganku?</li>
+            <li>Mengapa aku merasa lega ketika lawan bicaraku terjatuh?</li>
+        </ul>
+        <p>Pertanyaan-pertanyaan ini tidak nyaman, tetapi justru di situlah letak obatnya. Luka hanya bisa sembuh jika kita berani melihatnya.</p>
+
+        <h3>5.2 Dimensi Muhasabah: Kognitif, Afektif, dan Konatif</h3>
+        <p>Penelitian psikologi modern mengenali muhasabah sebagai bentuk regulasi diri spiritual yang bekerja pada tiga dimensi:</p>
+        <ol>
+            <li><strong>Dimensi Kognitif:</strong> Menyadari dan mengevaluasi pikiran-pikiran yang muncul—apa yang kita pikirkan tentang orang lain, apakah kita adil dalam menilai, apakah kita sudah memeriksa fakta.</li>
+            <li><strong>Dimensi Afektif:</strong> Menyadari dan mengelola emosi—mengapa kita marah, apakah kemarahan itu proporsional, apakah kita membiarkan emosi menguasai nalar.</li>
+            <li><strong>Dimensi Konatif:</strong> Menyadari dan mengevaluasi tindakan—apakah tindakan kita membangun atau merusak, apakah kita sudah menahan diri dari menyebarkan fitnah.</li>
+        </ol>
+
+        <h3>5.3 Muhasabah dan Tazkiyah dalam Psikologi Islam</h3>
+        <p>Dalam kerangka psikologi Islam, muhasabah adalah bagian integral dari proses tazkiyah (penyucian jiwa). Al-Ghazali menjelaskan bahwa tazkiyah memiliki tiga tahap:</p>
+        <ol>
+            <li><strong>Takhliyah:</strong> Membersihkan diri dari penyakit hati dan kebiasaan buruk.</li>
+            <li><strong>Tahliyah:</strong> Menghiasi diri dengan akhlak yang mulia.</li>
+            <li><strong>Tajliyah:</strong> Terbukanya cahaya kebenaran dalam hati setelah bersih dan terhias.</li>
+        </ol>
+        <p>Muhasabah berfungsi sebagai alat untuk melakukan takhliyah—mengidentifikasi dan membersihkan penyakit hati seperti sombong, iri, dan fanatisme. Tanpa muhasabah, seseorang tidak akan pernah menyadari penyakit hatinya, dan tanpa kesadaran itu, ia tidak akan pernah sembuh.</p>
+        <p>Ibnu Qayyim al-Jawziyyah dalam Madarij al-Salikin menambahkan bahwa muhasabah harus dilakukan pada tiga tingkatan:</p>
+        <ol>
+            <li>Sebelum beramal: Memastikan niat dan cara yang benar.</li>
+            <li>Saat beramal: Memastikan tetap pada jalur yang benar.</li>
+            <li>Setelah beramal: Mengevaluasi hasil dan dampaknya.</li>
+        </ol>
+
+        <h3>5.4 Syarat Muhasabah yang Efektif</h3>
+        <p>Muhasabah yang benar harus didasarkan pada ilmu syar'i, bukan sekadar perasaan. Tanpa ilmu, seseorang tidak bisa membedakan mana yang benar dan mana yang salah. Imam Al-Ghazali mengingatkan bahwa muhasabah tanpa ilmu bisa berbahaya—seseorang bisa saja merasa benar dalam kesalahannya.</p>
+        <p>Syarat-syarat muhasabah yang efektif:</p>
+        <ol>
+            <li><strong>Ilmu:</strong> Memahami apa yang benar dan salah secara syar'i.</li>
+            <li><strong>Kejujuran:</strong> Berani mengakui kesalahan pada diri sendiri.</li>
+            <li><strong>Kerendahan hati:</strong> Tidak menganggap diri lebih baik dari orang lain.</li>
+            <li><strong>Keterbukaan:</strong> Mau menerima nasihat dan kritik dari orang lain.</li>
+            <li><strong>Keteguhan:</strong> Berkomitmen untuk memperbaiki diri secara terus-menerus.</li>
+        </ol>
+
+        <h3>5.5 Dampak Muhasabah pada Persatuan</h3>
+        <p>Jika setiap muslim bermuhasabah, ia akan:</p>
+        <ul>
+            <li>Menyadari bias dirinya.</li>
+            <li>Mengakui kesalahan dan kekurangan.</li>
+            <li>Lebih mudah memaafkan orang lain.</li>
+            <li>Lebih terbuka terhadap perbedaan.</li>
+            <li>Berusaha bersatu demi tujuan yang lebih besar.</li>
+        </ul>
+        <p>Muhasabah adalah obat bagi hati yang mati dan pintu masuk bagi persatuan sejati.</p>
+    </div>
+
+    <!-- ==================== HALAMAN 7: BAB 6 ==================== -->
+    <div class="page" id="page7">
+        <h1>BAB 6</h1>
+        <h2 style="border-left-color: #1a3c2e;">BAGAIMANA MENGHADAPI ORANG YANG BERBEDA? — LARANGAN MENGAKUI DAN MENGHORMATI KERAGAMAN</h2>
+
+        <h3>6.1 Larangan Menghakimi Iman Orang Lain</h3>
+        <p>Dalam Islam, ada perbedaan besar antara menghakimi perbuatan dan menghakimi hati atau iman seseorang. Rasulullah shallallahu alaihi wasallam memberikan peringatan keras:</p>
+        <div class="ayat">"Jika seseorang berkata kepada saudaranya, 'Wahai kafir,' maka tuduhan itu akan kembali kepada salah satu dari keduanya. Jika yang dituduh benar-benar kafir, maka tuduhan itu jatuh kepadanya. Namun jika tidak, tuduhan itu berbalik mengenai si penuduh." (HR. Bukhari no. 6104; Muslim no. 60)</div>
+        <p>Kita wajib mengingkari kemungkaran, tetapi dilarang memastikan akhir hidup seseorang. Allah SWT berfirman:</p>
+        <div class="ayat">"Sesungguhnya keputusan (hisab) di antara mereka di akhirat hanyalah hak Allah." (QS. Al-Hajj [22]: 17)</div>
+        <p>Sebelum kita melabeli orang lain sesat, ingatlah bahwa kita juga pernah salah. Sebelum kita memastikan orang lain masuk neraka, ingatlah bahwa kita tidak tahu bagaimana akhir hidup kita sendiri. Bukankah lebih bijak untuk menunduk dan berdoa, daripada menunjuk dan memvonis?</p>
+
+        <h3>6.2 Condemn the Sin, Not the Sinner</h3>
+        <p>Dalam psikologi, teori labeling menjelaskan bahwa melabeli seseorang (misalnya "sesat", "kafir", "bid'ah") justru memperkuat identitas negatifnya dan membuatnya semakin sulit berubah. Pendekatan yang lebih efektif adalah mengkritik perilaku, bukan identitas.</p>
+        <p>Kaidahnya: benci kemaksiatannya, bukan orangnya.</p>
+        <p>Contoh penerapan:</p>
+        <ul>
+            <li><strong>Salah:</strong> "Kamu sesat karena kamu melakukan bid'ah!"</li>
+            <li><strong>Benar:</strong> "Menurut saya, praktik ini perlu dikaji ulang karena dalilnya..."</li>
+        </ul>
+
+        <h3>6.3 Keragaman sebagai Sunnatullah</h3>
+        <p>Allah SWT berfirman:</p>
+        <div class="ayat">"Wahai manusia! Sesungguhnya Kami menciptakan kamu dari seorang laki-laki dan seorang perempuan, kemudian Kami jadikan kamu berbangsa-bangsa dan bersuku-suku agar kamu saling mengenal. Sesungguhnya yang paling mulia di antara kamu di sisi Allah ialah orang yang paling bertakwa." (QS. Al-Hujurat [49]: 13)</div>
+        <p>Ayat ini adalah landasan teologis bagi penghormatan terhadap keragaman. Allah menciptakan kita berbeda-beda bukan untuk saling memerangi, tetapi untuk saling mengenal dan belajar. Perbedaan adalah anugerah, bukan kutukan.</p>
+
+        <h3>6.4 Keragaman dalam Konteks Indonesia: Bhinneka Tunggal Ika</h3>
+        <p>Dalam konteks Indonesia, nilai-nilai keragaman ini selaras dengan semangat Bhinneka Tunggal Ika. Perlu dipahami dengan jelas:</p>
+        <ul>
+            <li>Bukan berarti Pancasila atau Bhinneka dianggap identik dengan ajaran Islam.</li>
+            <li>Melainkan nilai-nilai universal tentang penghormatan terhadap perbedaan dan persatuan dalam keberagaman adalah titik temu yang dapat dijadikan pijakan bersama.</li>
+        </ul>
+        <p>Al-Qur'an memerintahkan mencari titik temu melalui kalimatun sawa (kalimat pegangan yang sama), sebagaimana disebutkan dalam surah Ali Imran ayat 64:</p>
+        <div class="ayat">"Katakanlah: 'Hai Ahli Kitab, marilah kita berkumpul pada satu kalimat yang sama antara kami dan kamu..." (QS. Ali Imran [3]: 64)</div>
+        <p>Dalam konteks berbangsa, titik temunya adalah Pancasila dan UUD 1945. Dalam konteks keumatan, titik temunya adalah Al-Qur'an dan Hadis.</p>
+
+        <h3>6.5 Adab al-Ikhtilaf: Etika Berbeda Pendapat</h3>
+        <p>Beberapa prinsip adab al-ikhtilaf yang perlu dipegang:</p>
+        <ol>
+            <li><strong>Niat yang lurus:</strong> Perbedaan pendapat harus didasari niat mencari kebenaran, bukan kemenangan atau menjatuhkan orang lain.</li>
+            <li><strong>Menghormati lawan bicara:</strong> Tidak menghina, mencaci, atau merendahkan orang yang berbeda pendapat.</li>
+            <li><strong>Berpegang pada dalil:</strong> Perbedaan pendapat harus didasarkan pada dalil yang jelas, bukan sekadar hawa nafsu atau fanatisme kelompok.</li>
+            <li><strong>Terbuka terhadap koreksi:</strong> Siap menerima bahwa pendapat kita bisa salah dan pendapat orang lain bisa benar.</li>
+            <li><strong>Menjaga persatuan:</strong> Perbedaan pendapat tidak boleh merusak ukhuwah dan persatuan umat.</li>
+        </ol>
+    </div>
+
+    <!-- ==================== HALAMAN 8: BAB 7 ==================== -->
+    <div class="page" id="page8">
+        <h1>BAB 7</h1>
+        <h2 style="border-left-color: #1a3c2e;">BAGAIMANA PERBEDAAN TETAP MENGHASILKAN PERSATUAN? – TIGA KOMPONEN KHALIFAH</h2>
+
+        <h3>7.1 Tiga Komponen Hidup: Dunia, Waktu, dan Manusia</h3>
+        <p>Hidup di dunia dapat diringkas menjadi tiga komponen:</p>
+        <ol>
+            <li>Dunia adalah medan ujian (QS. Al-Kahfi [18]: 7), bukan tujuan akhir.</li>
+            <li>Waktu adalah amanah yang akan dihisab (QS. Al-Ashr [103]: 1-3; HR. Tirmidzi no. 2417).</li>
+            <li>Manusia adalah khalifah yang bertugas menjaga bumi (QS. Al-Baqarah [2]: 30; HR. Bukhari no. 893; Muslim no. 1829).</li>
+        </ol>
+        <p>Jika dipahami dengan benar, tidak ada ruang untuk perpecahan:</p>
+        <ul>
+            <li>Dunia hanyalah sementara → tidak perlu berebut kekuasaan.</li>
+            <li>Waktu terbatas → tidak punya waktu untuk bermusuhan.</li>
+            <li>Kita adalah khalifah → tugas kita membangun, bukan merusak.</li>
+        </ul>
+
+        <h3>7.2 Tugas Khalifah: Menjaga Rumah Sendiri</h3>
+        <p>Tugas khalifah dalam perspektif kontemporer mencakup:</p>
+        <ol>
+            <li>Penjagaan ekologis: Menjaga alam dan lingkungan.</li>
+            <li>Keadilan sosial: Membangun sistem ekonomi yang adil, mengurangi kesenjangan.</li>
+            <li>Kesejahteraan semua makhluk: Memastikan sumber daya alam dikelola untuk kesejahteraan semua.</li>
+        </ol>
+        <p>Analogi "menjaga rumah sendiri" mencakup:</p>
+        <ul>
+            <li><strong>Rumah fisik:</strong> Lingkungan tempat tinggal.</li>
+            <li><strong>Rumah spiritual:</strong> Hati dan iman.</li>
+            <li><strong>Rumah sosial:</strong> Masyarakat dan umat.</li>
+            <li><strong>Rumah kosmik:</strong> Alam semesta.</li>
+        </ul>
+        <p>Menjaga rumah dimulai dari memperbaiki diri sendiri sebelum memperbaiki rumah orang lain.</p>
+
+        <h3>7.3 Persatuan untuk Menjalankan Tugas Khalifah</h3>
+        <p>Perpecahan menghalangi tugas kekhalifahan. Umat yang terpecah tidak akan mampu menjaga bumi dengan baik. Sebaliknya, persatuan memungkinkan umat untuk:</p>
+        <ul>
+            <li>Bekerja sama dalam menjaga lingkungan.</li>
+            <li>Bersama-sama membangun keadilan sosial.</li>
+            <li>Saling menguatkan dalam kebaikan.</li>
+            <li>Menjadi teladan bagi umat lain.</li>
+        </ul>
+        <p>Persatuan bukan tujuan akhir, melainkan sarana untuk menjalankan amanah kekhalifahan.</p>
+
+        <h3>7.4 Warisan Golden Age: Pemecahan Ilmu sebagai Jembatan</h3>
+        <p>Era keemasan Islam memberikan pelajaran berharga tentang bagaimana para ulama memecah ilmu tanpa memecah persatuan. Ini adalah contoh konkret bagaimana perbedaan pendekatan dan metodologi tidak harus menghasilkan perpecahan, justru dapat memperkaya peradaban.</p>
+        <p>Perlu dicatat bahwa kemajuan ini tidak terjadi dalam ruang hampa. Ia didukung oleh stabilitas politik yang relatif baik pada masa Abbasiyah, keterbukaan terhadap peradaban lain, dan budaya penerjemahan yang masif.</p>
+        <p>Beberapa contoh:</p>
+        <ul>
+            <li><strong>Al-Khawarizmi (w. 850 M)</strong> memecahkan matematika menjadi langkah-langkah logis yang menjadi cikal bakal algoritma. Ia tidak sedang memecah umat, tetapi membangun jembatan agar lebih banyak orang bisa memahami matematika.</li>
+            <li><strong>Ibn al-Haytham (w. 1040 M)</strong> mengembangkan metode ilmiah dalam fisika optik yang menekankan pengujian empiris. Ini adalah contoh bagaimana sains dapat berkembang tanpa mengancam iman.</li>
+            <li><strong>Ibnu Sina (w. 1037 M)</strong> mengembangkan ilmu kedokteran secara sistematis dalam Al-Qanun fi al-Tibb. Ia mengembangkan pendekatan medis yang dapat berdiri sendiri secara ilmiah tanpa mengurangi nilai-nilai spiritual.</li>
+            <li><strong>Ibnu Khaldun (w. 1406 M)</strong> mengembangkan analisis peradaban dengan konsep ashabiyah, umran, dan dawlah. Ia menunjukkan bahwa peradaban dapat dipelajari secara ilmiah.</li>
+        </ul>
+        <p>Pelajaran bagi kita: perbedaan mazhab, organisasi, atau metode dakwah seharusnya dipahami seperti pemecahan ilmu—untuk melengkapi dan memudahkan, bukan untuk saling meniadakan. Pemecahan ilmu adalah jembatan, bukan tembok pemisah.</p>
+        <p><strong>Koneksi dengan Kekhalifahan:</strong> Para ilmuwan golden age menjalankan tugas kekhalifahan mereka dengan cara masing-masing. Al-Khawarizmi menjaga "rumah" intelektual dengan mengembangkan logika dan sistem bilangan. Ibn al-Haytham menjaga "rumah" fisik dengan memahami cara kerja cahaya dan penglihatan. Ibnu Sina menjaga "rumah" jasmani dengan mengembangkan pengobatan. Mereka semua adalah khalifah di bidangnya—menjaga bumi melalui ilmu pengetahuan dan pelayanan kepada umat manusia.</p>
+        <p>Persatuan mereka terletak pada tujuan bersama: menghadirkan kemaslahatan bagi umat. Mereka berbeda metodologi, tetapi satu dalam tujuan. Ini adalah model yang ingin kita tiru dalam menghadapi perbedaan di era modern.</p>
+    </div>
+
+    <!-- ==================== HALAMAN 9: BAB 8 ==================== -->
+    <div class="page" id="page9">
+        <h1>BAB 8</h1>
+        <h2 style="border-left-color: #1a3c2e;">UNTUK APA PERSATUAN ITU? — PUNCAK MISI RAHMATAN LIL 'ALAMIN</h2>
+
+        <h3>8.1 Islam sebagai Rahmat bagi Seluruh Alam</h3>
+        <p>Allah SWT berfirman:</p>
+        <div class="ayat">"Tidaklah Kami mengutus engkau (Muhammad) melainkan untuk menjadi rahmat bagi seluruh alam." (QS. Al-Anbiya [21]: 107)</div>
+        <p>Rahmat berarti kasih sayang yang menuntut perbuatan nyata. Jika perpecahan terjadi, rahmat terhenti. Ketika umat bersatu, mereka menjadi agen rahmat: menyayangi sesama manusia, hewan, dan lingkungan.</p>
+
+        <h3>8.2 Rahmat dalam Hubungan dengan Sesama Manusia</h3>
+        <p>Rasulullah shallallahu alaihi wasallam bersabda:</p>
+        <div class="ayat">"Barangsiapa tidak menyayangi, maka ia tidak akan disayangi." (HR. Bukhari no. 6013; Muslim no. 2318)</div>
+        <p>Dalam praktik sehari-hari, rahmat diwujudkan melalui:</p>
+
+        <h4>a. Memudahkan Urusan Orang Lain</h4>
+        <p>Rasulullah bersabda, "Barangsiapa memudahkan urusan orang yang sedang kesulitan, Allah akan memudahkan urusannya di dunia dan akhirat." (HR. Muslim no. 2699)</p>
+        <p>Ketika kita berbeda pendapat dengan seseorang, kita masih bisa memudahkan urusannya. Misalnya, meskipun kita berbeda pandangan tentang praktik keagamaan tertentu, kita tetap bisa membantu tetangga kita yang sedang sakit, atau meringankan beban saudara kita yang sedang kesusahan.</p>
+
+        <h4>b. Memberi Maaf dan Menahan Amarah</h4>
+        <p>Rasulullah bersabda, "Sebaik-baik kalian adalah yang paling baik akhlaknya." (HR. Bukhari no. 6026; Muslim no. 2321)</p>
+        <p>Dalam konteks perbedaan, memberi maaf adalah wujud rahmat tertinggi. Ketika seseorang menghina kita karena perbedaan pendapat, kita bisa memilih untuk memaafkan—bukan karena kita lemah, tetapi karena kita tahu bahwa kita sendiri juga tidak sempurna.</p>
+
+        <h4>c. Menjaga Lisan dari Ghibah dan Fitnah</h4>
+        <p>Al-Qur'an mengingatkan, "Dan janganlah sebagian kamu menggunjing sebagian yang lain. Adakah di antara kamu yang suka memakan daging saudaranya yang sudah mati? Tentulah kamu merasa jijik." (QS. Al-Hujurat [49]: 12)</p>
+        <p>Menjaga lisan adalah bentuk rahmat yang paling sederhana namun paling sulit. Di era media sosial, menjaga lisan berarti tidak menyebarkan fitnah, tidak mengunjing, dan tidak menghina—bahkan ketika kita sangat berbeda pendapat.</p>
+
+        <h3>8.3 Rahmat kepada Hewan dan Lingkungan</h3>
+        <p>Rasulullah shallallahu alaihi wasallam mengisahkan:</p>
+        <ul>
+            <li>Wanita yang masuk neraka karena menyiksa kucing (HR. Bukhari no. 2365; Muslim no. 2245).</li>
+            <li>Lelaki yang masuk surga karena memberi minum anjing yang kehausan (HR. Bukhari no. 2365; Muslim no. 2245).</li>
+        </ul>
+        <p>Ini menunjukkan bahwa rahmat tidak terbatas pada sesama manusia, tetapi mencakup seluruh makhluk.</p>
+        <p>Dalam praktik sehari-hari, rahmat kepada hewan dan lingkungan diwujudkan melalui:</p>
+        <ul>
+            <li>Tidak menyakiti binatang, bahkan untuk bersenang-senang.</li>
+            <li>Tidak merusak lingkungan dan sumber daya alam.</li>
+            <li>Menjaga kebersihan dan kelestarian alam.</li>
+            <li>Mengurangi konsumsi berlebihan yang merusak ekosistem.</li>
+        </ul>
+
+        <h3>8.4 Rahmat dalam Konteks Sosial Kemasyarakatan</h3>
+        <p>Persatuan umat memungkinkan terwujudnya rahmat dalam skala yang lebih luas:</p>
+
+        <h4>a. Keadilan Sosial</h4>
+        <p>Umat yang bersatu dapat memperjuangkan keadilan bersama. Dalam sejarah Islam, Khalifah Umar bin Abdul Aziz dikenal karena kebijakannya yang adil dan keberpihakannya pada rakyat miskin. Ini adalah wujud rahmat dalam skala kebijakan publik.</p>
+
+        <h4>b. Pendidikan dan Pemberdayaan</h4>
+        <p>Rahmat diwujudkan melalui penyebaran ilmu dan pemberdayaan masyarakat. Tradisi keilmuan Islam—dari madrasah hingga perpustakaan—adalah manifestasi dari rahmat yang memungkinkan umat berkembang.</p>
+
+        <h4>c. Kemanusiaan Universal</h4>
+        <p>Rahmatan lil 'alamin berarti kasih sayang tidak terbatas pada muslim saja, tetapi pada seluruh umat manusia. Dalam sejarah, umat Islam di masa keemasan memberikan perlindungan bagi kaum minoritas, menerjemahkan ilmu dari berbagai peradaban, dan membangun peradaban yang inklusif.</p>
+
+        <h3>8.5 Hubungan antara Ketidaksempurnaan dan Rahmat</h3>
+        <p>Menyadari kelemahan diri sendiri membuat kita lebih berbelas kasih pada kelemahan orang lain. Kita tidak lagi mudah menghakimi karena kita tahu kita juga lemah. Inilah esensi dari rahmat.</p>
+        <p>Ketika kita berhenti menuntut kesempurnaan dari orang lain, kita mulai mampu mencintai mereka apa adanya, sebagaimana Allah mencintai kita meskipun kita penuh kekurangan.</p>
+
+        <h3>8.6 Persatuan sebagai Syarat Rahmat</h3>
+        <p>Persatuan bukanlah tujuan akhir, tetapi syarat untuk menjadi rahmat. Umat yang terpecah tidak akan mampu menghadirkan rahmat; sebaliknya, mereka akan menjadi sumber fitnah dan kerusakan.</p>
+        <p>Dengan bersatu, umat Islam dapat:</p>
+        <ul>
+            <li>Menjadi teladan dalam akhlak dan kebaikan.</li>
+            <li>Bekerja sama dalam menyelesaikan masalah kemanusiaan.</li>
+            <li>Menjadi penyejuk bagi dunia yang dilanda konflik.</li>
+            <li>Menebarkan kasih sayang kepada semua makhluk.</li>
+        </ul>
+    </div>
+
+    <!-- ==================== HALAMAN 10: BAB 9 ==================== -->
+    <div class="page" id="page10">
+        <h1>BAB 9</h1>
+        <h2 style="border-left-color: #1a3c2e;">STUDI KASUS — POLARISASI DI MEDIA SOSIAL</h2>
+
+        <h3>9.1 Fenomena Polarisasi</h3>
+        <p>Untuk memperkuat validitas eksternal kerangka teoretis ini, mari kita tinjau satu fenomena netral yang terjadi di banyak masyarakat: polarisasi di media sosial. Fenomena ini tidak menyangkut satu golongan tertentu, melainkan pola umum yang terjadi ketika perbedaan pendapat berubah menjadi permusuhan.</p>
+
+        <h3>9.2 Proses Polarisasi</h3>
+
+        <h4>Tahap 1: Bias Konfirmasi</h4>
+        <p>Ketika sebuah isu kontroversial muncul, algoritma media sosial cenderung menampilkan konten yang paling emosional. Pengguna yang sudah memiliki kecenderungan tertentu akan disuguhi konten yang menguatkan keyakinannya. Ini adalah contoh nyata dari bias konfirmasi.</p>
+
+        <h4>Tahap 2: Bias Ingrup-Outgroup</h4>
+        <p>Karena jarang terpapar pandangan yang berbeda, pengguna merasa bahwa kelompoknya pasti benar dan kelompok lain pasti salah. Ini adalah contoh bias ingrup-outgroup.</p>
+
+        <h4>Tahap 3: Disonansi Kognitif</h4>
+        <p>Ketika ada pihak yang mencoba meluruskan, ia dianggap musuh. Untuk mengurangi ketidaknyamanan karena memusuhi sesama, otak mencari pembenaran: "Mereka memang pantas dimusuhi karena mereka sesat." Ini adalah contoh disonansi kognitif.</p>
+
+        <h4>Tahap 4: Desensitisasi Moral</h4>
+        <p>Semakin sering terpapar konten permusuhan, semakin tumpul kepekaan moralnya. Hinaan dan ujaran kebencian dianggap wajar. Ini adalah contoh desensitisasi moral.</p>
+
+        <h3>9.3 Solusi dari Kerangka Muhasabah</h3>
+        <p>Apa yang bisa dilakukan?</p>
+        <ol>
+            <li><strong>Muhasabah:</strong> Bertanya pada diri sendiri: mengapa saya mudah marah? Apakah saya sudah memeriksa kebenaran informasi? Apakah saya sudah mempertimbangkan perspektif lain?</li>
+            <li><strong>Larangan menghakimi:</strong> Mengkritik pernyataan, bukan menghina orang.</li>
+            <li><strong>Penghormatan terhadap keragaman:</strong> Perbedaan pendapat adalah hal yang sehat, asalkan dikelola dengan adab.</li>
+            <li><strong>Pelajaran dari golden age:</strong> Perbedaan metode berpikir seharusnya memperkaya, bukan memecah.</li>
+        </ol>
+
+        <h3>9.4 Analisis</h3>
+        <p>Analisis ini menunjukkan bahwa kerangka teoretis yang dibangun dalam riset ini dapat digunakan untuk memahami fenomena nyata secara sistematis. Meskipun studi kasus ini bersifat ilustratif dan tidak berbasis data lapangan, ia memperlihatkan keterkaitan logis antara konsep-konsep yang dibahas.</p>
+    </div>
+
+    <!-- ==================== HALAMAN 11: BAB 10 ==================== -->
+    <div class="page" id="page11">
+        <h1>BAB 10</h1>
+        <h2 style="border-left-color: #1a3c2e;">KESIMPULAN</h2>
+
+        <p>Riset ini menegaskan bahwa ketidaksempurnaan manusia adalah titik tolak untuk memahami dan mengatasi perpecahan. Perpecahan terjadi ketika ketidaksempurnaan tidak dikelola dengan muhasabah, sehingga melahirkan bias kognitif, fanatisme, dan desensitisasi moral. Sebaliknya, muhasabah yang didasari ilmu akan menumbuhkan kerendahan hati, kemampuan menilai perilaku tanpa menghakimi iman, penghormatan terhadap keragaman, dan semangat belajar dari sejarah.</p>
+        <p>Tugas kekhalifahan dan misi rahmatan lil 'alamin adalah tujuan akhir yang memberikan arah bagi seluruh upaya persatuan. Persatuan bukan untuk membuat semua orang menjadi sama, tetapi untuk memungkinkan umat menjalankan amanahnya sebagai khalifah di bumi—menjaga dunia, waktu, dan sesama manusia sebagai wujud nyata rahmat bagi seluruh alam.</p>
+        <p><strong>Pesan akhir:</strong> Riset ini tidak meminta Anda mengubah dunia hari ini. Ia hanya meminta Anda berhenti sejenak dan bertanya: Sudahkah aku menjadi rahmat bagi orang-orang di sekitarku? Jika belum, mari mulai dari sini. Dari diri kita. Hari ini.</p>
+    </div>
+
+    <!-- ==================== HALAMAN 12: BAB 11 ==================== -->
+    <div class="page" id="page12">
+        <h1>BAB 11</h1>
+        <h2 style="border-left-color: #1a3c2e;">IMPLIKASI KEBIJAKAN DAN REKOMENDASI PRAKTIS</h2>
+
+        <h3>11.1 Rekomendasi Implementatif</h3>
+        <p>Riset ini menyarankan beberapa langkah implementatif:</p>
+        <ol>
+            <li>Integrasi pendidikan muhasabah dalam kurikulum sekolah dan pesantren, bukan sebagai mata pelajaran terpisah, tetapi sebagai pendekatan dalam semua bidang studi.</li>
+            <li>Pelatihan bagi para dai dan pendakwah tentang cara mengelola perbedaan, mengenali bias kognitif, dan menghindari ujaran kebencian.</li>
+            <li>Kampanye publik tentang literasi media dan pengenalan bias kognitif untuk mengurangi polarisasi di ruang digital.</li>
+            <li>Indikator keberhasilan yang terukur, misalnya penurunan jumlah ujaran kebencian di platform digital, peningkatan partisipasi dalam dialog lintas golongan, dan survei persepsi tentang kerukunan umat.</li>
+        </ol>
+
+        <h3>11.2 Checklist Praktis</h3>
+        <p>Riset ini tidak ingin berhenti pada konsep. Ia ingin menjadi langkah. Berikut adalah checklist sederhana yang bisa dilakukan siapa pun, besok pagi, tanpa perlu menunggu orang lain.</p>
+
+        <h4>Pagi hari:</h4>
+        <p>Niatkan hari ini untuk tidak menyebarkan berita apa pun sebelum memeriksa fakta. Jika ragu, tahan. Diam lebih baik daripada menjadi penyebar fitnah.</p>
+
+        <h4>Siang hari:</h4>
+        <p>Saat melihat kritik atau komentar pedas di media sosial, tahan jari untuk membalas sebelum menghitung sampai sepuluh. Gunakan jeda itu untuk bertanya: apakah balasanku akan menyejukkan atau justru memperkeruh?</p>
+
+        <h4>Malam hari:</h4>
+        <p>Tanya diri sendiri: apa aku sudah menjadi penyejuk atau pemicu panas hari ini? Jika ada satu saja momen di mana kita berhasil menahan diri, syukuri. Jika ada satu momen di mana kita tergelincir, minta ampun dan niatkan besok lebih baik.</p>
+
+        <p>Checklist ini bukan untuk menjadi beban baru, melainkan latihan sederhana. Ia adalah muhasabah yang diterjemahkan ke dalam tindakan nyata. Ia adalah jalan kecil menuju persatuan yang dimulai dari diri sendiri.</p>
+    </div>
+
+    <!-- ==================== HALAMAN 13: BAB 12 ==================== -->
+    <div class="page" id="page13">
+        <h1>BAB 12</h1>
+        <h2 style="border-left-color: #1a3c2e;">KETERBATASAN DAN AGENDA RISET MENDATANG</h2>
+
+        <h3>12.1 Keterbatasan</h3>
+        <p>Riset ini memiliki beberapa keterbatasan:</p>
+        <ol>
+            <li>Ketiadaan data lapangan membuat temuan-temuan dalam riset ini belum teruji secara empiris.</li>
+            <li>Potensi bias seleksi sumber tidak dapat dihilangkan sepenuhnya, meskipun telah dilakukan triangulasi.</li>
+            <li>Generalisasi temuan harus dilakukan dengan hati-hati karena konteks sosial dan kultural yang beragam.</li>
+            <li>Riset ini tidak membahas secara mendalam dimensi politik dan ekonomi dari perpecahan umat, yang tentu saja sangat relevan.</li>
+        </ol>
+
+        <h3>12.2 Agenda Riset Mendatang</h3>
+        <p>Agenda riset mendatang dapat mencakup beberapa arah:</p>
+        <ol>
+            <li>Studi kuantitatif untuk menguji hubungan antara praktik muhasabah dan tingkat toleransi atau kerukunan.</li>
+            <li>Studi komparatif antara berbagai komunitas muslim di berbagai negara untuk memahami bagaimana konteks sosial mempengaruhi pola perpecahan dan persatuan.</li>
+            <li>Riset aksi partisipatif yang melibatkan komunitas dalam merancang dan menguji intervensi berbasis muhasabah.</li>
+            <li>Kajian lebih mendalam tentang peran elite politik dan ekonomi dalam memanfaatkan perpecahan untuk kepentingan tertentu.</li>
+        </ol>
+    </div>
+
+    <!-- ==================== HALAMAN 14: PENUTUP ==================== -->
+    <div class="page" id="page14">
+        <h1>PENUTUP</h1>
+
+        <p>Sebagai penutup, riset ini ingin mengembalikan kita pada satu ayat yang merangkum seluruh pesan persatuan, keragaman, dan ketakwaan. Ayat ini adalah pengingat bahwa perbedaan bukanlah alasan untuk saling merendahkan, melainkan undangan untuk saling mengenal. Dan bahwa kemuliaan sejati di sisi Allah bukan diukur dari golongan, suku, atau klaim kebenaran, melainkan dari ketakwaan yang lahir dari hati yang bersih.</p>
+
+        <p>Allah SWT berfirman:</p>
+        <div class="ayat">"Wahai manusia! Sesungguhnya Kami menciptakan kamu dari seorang laki-laki dan seorang perempuan, kemudian Kami jadikan kamu berbangsa-bangsa dan bersuku-suku agar kamu saling mengenal. Sesungguhnya yang paling mulia di antara kamu di sisi Allah ialah orang yang paling bertakwa. Sesungguhnya Allah Maha Mengetahui lagi Maha Mengenal." (QS. Al-Hujurat [49]: 13)</div>
+
+        <p>Ayat ini menutup riset ini dengan satu pesan yang jernih: kita berbeda untuk saling mengenal, bukan untuk saling meniadakan. Dan kemuliaan kita tidak terletak pada golongan, melainkan pada ketakwaan.</p>
+        <p>Maka, mari kita pulang kepada-Nya dengan hati yang lebih lembut, mata yang lebih jernih, dan tangan yang lebih siap untuk merangkul.</p>
+
+        <p style="text-align: center; font-size: 20px; margin-top: 30px; color: #1a3c2e;">Wallahu a'lam bish-shawab.</p>
+    </div>
+
+    <!-- ==================== HALAMAN 15: REFERENSI ==================== -->
+    <div class="page" id="page15">
+        <h1>REFERENSI</h1>
+
+        <h3>DAFTAR REFERENSI</h3>
+        <ul class="ref-list">
+            <li>Al-Qur'an al-Karim. Terjemahan Kementerian Agama Republik Indonesia.</li>
+            <li>Al-Baghdadi, Abu Manshur. <em>Al-Farq bain al-Firaq</em>.</li>
+            <li>Al-Baihaqi. <em>Syu'ab al-Iman</em>.</li>
+            <li>Al-Bukhari, Muhammad bin Ismail. <em>Shahih al-Bukhari</em>.</li>
+            <li>Al-Ghazali, Abu Hamid. <em>Ihya Ulumuddin</em>.</li>
+            <li>Al-Ghazali, Abu Hamid. <em>Faishal al-Tafriqah</em>.</li>
+            <li>Asy-Syahrastani. <em>Al-Milal wan Nihal</em>.</li>
+            <li>Bandura, Albert. <em>Moral Disengagement: How People Do Harm and Live with Themselves</em>. New York: Worth Publishers, 2016.</li>
+            <li>Festinger, Leon. <em>A Theory of Cognitive Dissonance</em>. Stanford: Stanford University Press, 1957.</li>
+            <li>Ibnu Hazm, Ali bin Ahmad. <em>Al-Fasl fi al-Milal wa al-Ahwa' wa al-Nihal</em>.</li>
+            <li>Ibnu Khaldun, Abdurrahman. <em>Muqaddimah</em>.</li>
+            <li>Ibnu Majah, Muhammad bin Yazid. <em>Sunan Ibnu Majah</em>.</li>
+            <li>Ibnu Qayyim al-Jawziyyah. <em>Madarij al-Salikin</em>.</li>
+            <li>Ibnu Taimiyah. <em>Majmu' al-Fatawa</em>.</li>
+            <li>Kahneman, Daniel. <em>Thinking, Fast and Slow</em>. New York: Farrar, Straus and Giroux, 2011.</li>
+            <li>Kahneman, Daniel & Tversky, Amos. "Judgment Under Uncertainty: Heuristics and Biases." <em>Science</em>, Vol. 185, No. 4157, 1974, hal. 1124-1131.</li>
+            <li>Kruger, Justin & Dunning, David. "Unskilled and Unaware of It: How Difficulties in Recognizing One's Own Incompetence Lead to Inflated Self-Assessments." <em>Journal of Personality and Social Psychology</em>, Vol. 77, No. 6, 1999, hal. 1121-1134.</li>
+            <li>Muslim bin al-Hajjaj. <em>Shahih Muslim</em>.</li>
+            <li>Abu Daud, Sulaiman bin al-Ash'ath. <em>Sunan Abi Daud</em>.</li>
+            <li>Pariser, Eli. <em>The Filter Bubble: How the New Personalized Web Is Changing What We Read and How We Think</em>. New York: Penguin Books, 2011.</li>
+            <li>Pronin, Emily, Lin, Daniel Y., & Ross, Lee. "The Bias Blind Spot: Perceptions of Bias in Self Versus Others." <em>Personality and Social Psychology Bulletin</em>, Vol. 28, No. 3, 2002, hal. 369-381.</li>
+            <li>Seligman, Martin E. P. & Peterson, Christopher. <em>Character Strengths and Virtues: A Handbook and Classification</em>. New York: Oxford University Press, 2004.</li>
+            <li>Sunstein, Cass R. <em>Echo Chambers: Bush v. Gore, Impeachment, and Democracy in the Age of the Internet</em>. Princeton: Princeton University Press, 2001.</li>
+            <li>Tajfel, Henri & Turner, John C. "The Social Identity Theory of Intergroup Behavior." Dalam <em>Psychology of Intergroup Relations</em>, disunting oleh Stephen Worchel dan William G. Austin. Chicago: Nelson-Hall, 1986, hal. 7–24.</li>
+        </ul>
+
+        <hr class="separator">
+
+        <h3>LAMPIRAN A: Kode Rujukan Ayat dan Hadis Utama</h3>
+        <ul>
+            <li>A1. QS. An-Nisa 4:28 – Manusia diciptakan lemah.</li>
+            <li>A2. HR. Tirmidzi no. 2499; Ibnu Majah no. 4251 – Setiap anak Adam berbuat salah.</li>
+            <li>A3. HR. Bukhari no. 401; Muslim no. 570 – Nabi mengakui dirinya manusia biasa.</li>
+            <li>A4. HR. Tirmidzi no. 3334; Ibnu Majah no. 4244 – Titik hitam di hati akibat dosa.</li>
+            <li>A5. QS. An-Nisa 4:79 – Bencana akibat kesalahan diri sendiri.</li>
+            <li>A6. QS. Al-Baqarah 2:74 – Hati yang keras seperti batu.</li>
+            <li>A7. HR. Abu Daud no. 4596; Tirmidzi no. 2640 – Hadis 73 golongan.</li>
+            <li>A8. HR. Abu Daud no. 4597; Ibnu Majah no. 3992 – Golongan selamat adalah Al-Jama'ah.</li>
+            <li>A9. HR. Tirmidzi no. 2641 – Golongan selamat mengikuti Nabi dan sahabat.</li>
+            <li>A10. QS. Al-Hujurat 49:12 – Larangan berprasangka buruk.</li>
+            <li>A11. QS. Al-Hasyr 59:18 – Perintah muhasabah.</li>
+            <li>A12. HR. Tirmidzi no. 2459 – Orang cerdas menghisab dirinya.</li>
+            <li>A13. HR. Bukhari no. 6104; Muslim no. 60 – Larangan mengkafirkan.</li>
+            <li>A14. QS. Al-Hajj 22:17 – Hisab hanya hak Allah.</li>
+            <li>A15. QS. Al-Hujurat 49:13 – Keragaman sebagai sunnatullah dan ketakwaan sebagai ukuran kemuliaan.</li>
+            <li>A16. QS. Ali Imran 3:64 – Kalimatun sawa.</li>
+            <li>A17. QS. Al-Kahfi 18:7 – Dunia sebagai ujian.</li>
+            <li>A18. QS. Al-Ashr 103:1-3 – Sumpah demi masa.</li>
+            <li>A19. HR. Tirmidzi no. 2417 – Hisab umur, masa muda, harta, ilmu.</li>
+            <li>A20. QS. Al-Baqarah 2:30 – Manusia sebagai khalifah.</li>
+            <li>A21. HR. Bukhari no. 893; Muslim no. 1829 – Setiap orang pemimpin.</li>
+            <li>A22. QS. Al-Anbiya 21:107 – Nabi sebagai rahmatan lil 'alamin.</li>
+            <li>A23. HR. Bukhari no. 6013; Muslim no. 2318 – Barangsiapa tidak menyayangi.</li>
+            <li>A24. HR. Bukhari no. 2365; Muslim no. 2245 – Wanita masuk neraka karena kucing, lelaki masuk surga karena anjing.</li>
+        </ul>
+
+        <h3>LAMPIRAN B: Kode Rujukan Bias Kognitif</h3>
+        <ul>
+            <li>B1. Bias Konfirmasi – Rujukan: Kahneman & Tversky, 1974.</li>
+            <li>B2. Bias Terlalu Percaya Diri – Rujukan: Kahneman, 2011.</li>
+            <li>B3. Titik Buta Bias – Rujukan: Pronin, Lin, & Ross, 2002.</li>
+            <li>B4. Efek Dunning-Kruger – Rujukan: Kruger & Dunning, 1999.</li>
+            <li>B5. Bias Ingrup-Outgrup – Rujukan: Tajfel & Turner, 1986.</li>
+        </ul>
+
+        <h3>LAMPIRAN C: Kode Rujukan Konsep Psikologi dan Padanan Islam</h3>
+        <ul>
+            <li>C1. Desensitisasi Moral / Hati yang Keras – Rujukan: Bandura, 2016; QS. Al-Baqarah 2:74.</li>
+            <li>C2. Disonansi Kognitif / Mencari Pembenaran – Rujukan: Festinger, 1957.</li>
+            <li>C3. Regulasi Diri / Muhasabah – Rujukan: Al-Ghazali, Ihya Ulumuddin; QS. Al-Hasyr 59:18.</li>
+            <li>C4. Teori Labeling – Rujukan: HR. Bukhari no. 6104; Muslim no. 60.</li>
+            <li>C5. Pendekatan Perilaku – Kaidah "benci kemaksiatannya, bukan orangnya".</li>
+            <li>C6. Tazkiyah / Penyucian Jiwa – Rujukan: Al-Ghazali, Ihya Ulumuddin; Ibnu Qayyim, Madarij al-Salikin.</li>
+        </ul>
+
+        <h3>LAMPIRAN D: Kode Rujukan Tokoh Golden Age Islam</h3>
+        <ul>
+            <li>D1. Al-Khawarizmi (w. 850 M) – Matematika, aljabar, algoritma.</li>
+            <li>D2. Ibn al-Haytham (w. 1040 M) – Fisika optik, metode ilmiah.</li>
+            <li>D3. Ibnu Sina (w. 1037 M) – Kedokteran, Al-Qanun fi al-Tibb.</li>
+            <li>D4. Ibnu Khaldun (w. 1406 M) – Sosiologi, Muqaddimah, teori ashabiyah.</li>
+        </ul>
+
+        <h3>LAMPIRAN E: Alur Peta Jalan Riset</h3>
+        <p>Alur riset ini berawal dari fitrah manusia yang lemah dan tidak sempurna (A1-A4; B1-B5). Dari sana muncul dua jalur:</p>
+        <p><strong>Jalur pertama (negatif):</strong> jika tidak dimuhasabahi → desensitisasi moral (C1) → disonansi kognitif (C2) → fanatisme (B5, D4) → perpecahan (A7).</p>
+        <p><strong>Jalur kedua (positif):</strong> jika dimuhasabahi (A11-A12) → kesadaran diri (C3) → menahan diri dari menghakimi (A13-A14, C4-C5) → menghormati keragaman (A15-A16) → belajar dari sejarah (D1-D4) → pelaksanaan tugas khalifah (A17-A21) → rahmatan lil 'alamin (A22-A24).</p>
+        <p>Dengan demikian, riset ini menegaskan bahwa ketidaksempurnaan manusia adalah titik tolak kesadaran bahwa perpecahan bukanlah takdir, melainkan buah dari kelalaian bermuhasabah. Muhasabah yang tulus akan mengantarkan pada puncak misi hidup menjadi rahmat bagi seluruh alam.</p>
+
+        <hr class="separator">
+
+        <h3>GLOSARIUM</h3>
+        <ul>
+            <li><span class="glossary-term">Adab al-ikhtilaf:</span> Etika atau adab dalam berbeda pendapat.</li>
+            <li><span class="glossary-term">Amigdala:</span> Bagian otak yang berperan dalam pemrosesan emosi, terutama rasa takut dan marah.</li>
+            <li><span class="glossary-term">Ashabiyah:</span> Solidaritas kelompok yang berlebihan hingga membutakan mata hati; istilah yang dipopulerkan oleh Ibnu Khaldun.</li>
+            <li><span class="glossary-term">Desensitisasi moral:</span> Proses melemahnya kepekaan moral akibat paparan berulang terhadap tindakan yang melanggar nilai.</li>
+            <li><span class="glossary-term">Disonansi kognitif:</span> Ketidaknyamanan psikologis yang timbul ketika seseorang melakukan tindakan yang bertentangan dengan keyakinannya.</li>
+            <li><span class="glossary-term">Furu':</span> Cabang-cabang hukum Islam yang bersifat cabang dan tidak pokok.</li>
+            <li><span class="glossary-term">Ghaflah:</span> Kelalaian; kondisi lalai dari mengingat Allah.</li>
+            <li><span class="glossary-term">Heuristik:</span> Jalan pintas mental yang digunakan otak untuk mengambil keputusan secara cepat.</li>
+            <li><span class="glossary-term">Ittiba':</span> Komitmen teguh terhadap kebenaran berdasarkan dalil.</li>
+            <li><span class="glossary-term">Kalimatun sawa:</span> Kalimat pegangan yang sama; titik temu antara berbagai kelompok.</li>
+            <li><span class="glossary-term">Khalifah:</span> Pemimpin atau wakil Allah di bumi yang bertugas menjaga dan memakmurkan bumi.</li>
+            <li><span class="glossary-term">Korteks prefrontal:</span> Bagian otak yang bertanggung jawab atas fungsi eksekutif seperti perencanaan, pengambilan keputusan, dan pengendalian diri.</li>
+            <li><span class="glossary-term">Muhasabah:</span> Introspeksi diri; evaluasi terhadap setiap tindakan dan niat.</li>
+            <li><span class="glossary-term">Mindfulness:</span> Kesadaran penuh terhadap pikiran dan perasaan tanpa menghakimi.</li>
+            <li><span class="glossary-term">Nafs ammarah:</span> Jiwa yang cenderung pada kejahatan dan hawa nafsu.</li>
+            <li><span class="glossary-term">Nafs lawwamah:</span> Jiwa yang menyalahkan diri sendiri ketika berbuat salah.</li>
+            <li><span class="glossary-term">Nafs muthmainnah:</span> Jiwa yang tenang dan damai.</li>
+            <li><span class="glossary-term">Qaswah al-qalb:</span> Kekerasan hati; kondisi hati yang keras dan tidak peka.</li>
+            <li><span class="glossary-term">Rahmatan lil 'alamin:</span> Rahmat bagi seluruh alam; tujuan universal dari risalah Islam.</li>
+            <li><span class="glossary-term">Takhliyah:</span> Proses membersihkan diri dari penyakit hati dan kebiasaan buruk.</li>
+            <li><span class="glossary-term">Tahliyah:</span> Proses menghiasi diri dengan akhlak yang mulia.</li>
+            <li><span class="glossary-term">Tajliyah:</span> Terbukanya cahaya kebenaran dalam hati setelah bersih dan terhias.</li>
+            <li><span class="glossary-term">Tazkiyah:</span> Penyucian jiwa; proses pembersihan dan pengembangan spiritual.</li>
+            <li><span class="glossary-term">Ukhuwah:</span> Persaudaraan; ikatan kasih sayang antar sesama muslim.</li>
+            <li><span class="glossary-term">Ushuluddin:</span> Pokok-pokok agama; hal-hal yang fundamental dalam akidah Islam.</li>
+            <li><span class="glossary-term">Wallahu a'lam bish-shawab:</span> Hanya Allah yang Maha Mengetahui yang benar.</li>
+        </ul>
+    </div>
+
+    <!-- ==================== NAVIGASI ==================== -->
+    <div class="nav">
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; width: 100%;">
+            <button onclick="changePage(-1)" id="prevBtn">◀ Sebelumnya</button>
+            <button onclick="openToc()" class="toc-btn">📑 Daftar Isi</button>
+            <button onclick="changePage(1)" id="nextBtn">Selanjutnya ▶</button>
+        </div>
+        <div class="page-indicator" id="pageIndicator">Halaman 1 / 15</div>
+    </div>
+
+</div>
+
+<!-- ==================== TOC OVERLAY ==================== -->
+<div class="toc-overlay" id="tocOverlay">
+    <div class="toc-box">
+        <h2>📑 Daftar Isi</h2>
+        <ul>
+            <li onclick="goToPage(1)">1. Cover & Abstrak</li>
+            <li onclick="goToPage(2)">2. Bab 1 – Manusia yang Tidak Sempurna</li>
+            <li onclick="goToPage(3)">3. Bab 2 – Bagaimana Manusia Salah Berpikir?</li>
+            <li onclick="goToPage(4)">4. Bab 3 – Dari Kesalahan ke Fanatisme</li>
+            <li onclick="goToPage(5)">5. Bab 4 – Desensitisasi Moral</li>
+            <li onclick="goToPage(6)">6. Bab 5 – Muhasabah</li>
+            <li onclick="goToPage(7)">7. Bab 6 – Menghadapi Orang yang Berbeda</li>
+            <li onclick="goToPage(8)">8. Bab 7 – Tiga Komponen Khalifah</li>
+            <li onclick="goToPage(9)">9. Bab 8 – Puncak Rahmatan lil 'Alamin</li>
+            <li onclick="goToPage(10)">10. Bab 9 – Studi Kasus Polarisasi</li>
+            <li onclick="goToPage(11)">11. Bab 10 – Kesimpulan</li>
+            <li onclick="goToPage(12)">12. Bab 11 – Implikasi Kebijakan</li>
+            <li onclick="goToPage(13)">13. Bab 12 – Keterbatasan & Agenda</li>
+            <li onclick="goToPage(14)">14. Penutup</li>
+            <li onclick="goToPage(15)">15. Referensi & Glosarium</li>
+        </ul>
+        <button class="close-toc" onclick="closeToc()">Tutup</button>
+    </div>
+</div>
+
+<script>
+    let currentPage = 1;
+    const totalPages = 15;
+
+    function updatePage() {
+        document.querySelectorAll('.page').forEach((el, idx) => {
+            el.classList.toggle('active', idx === currentPage - 1);
+        });
+        document.getElementById('pageIndicator').textContent = `Halaman ${currentPage} / ${totalPages}`;
+        document.getElementById('prevBtn').disabled = (currentPage === 1);
+        document.getElementById('nextBtn').disabled = (currentPage === totalPages);
+        window.scrollTo(0, 0);
+    }
+
+    function changePage(delta) {
+        const newPage = currentPage + delta;
+        if (newPage >= 1 && newPage <= totalPages) {
+            currentPage = newPage;
+            updatePage();
+            closeToc();
+        }
+    }
+
+    function goToPage(num) {
+        if (num >= 1 && num <= totalPages) {
+            currentPage = num;
+            updatePage();
+            closeToc();
+        }
+    }
+
+    function openToc() {
+        document.getElementById('tocOverlay').classList.add('active');
+    }
+
+    function closeToc() {
+        document.getElementById('tocOverlay').classList.remove('active');
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft') {
+            changePage(-1);
+            e.preventDefault();
+        } else if (e.key === 'ArrowRight') {
+            changePage(1);
+            e.preventDefault();
+        } else if (e.key === 'Escape') {
+            closeToc();
+        }
+    });
+
+    // Close TOC when clicking outside box
+    document.getElementById('tocOverlay').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeToc();
+        }
+    });
+
+    // Initialize
+    updatePage();
+</script>
+
+</body>
+</html>
+  <script>
+
+  </script>
+</body>
+</html>
